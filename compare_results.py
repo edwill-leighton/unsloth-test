@@ -118,7 +118,8 @@ def print_comparison(results: list[dict]):
             print("-" * len(header))
             base_time = runs[0]["timing"]["training_sec"]
             base_tps = runs[0]["throughput"]["tokens_per_second"]
-            row = f"{'Speedup vs {:<17}}'.format(runs[0]['gpu']['gpu_name'][:14])"
+            label = "Speedup vs " + runs[0]['gpu']['gpu_name'][:14]
+            row = f"{label:<30}"
             for r in runs:
                 speedup = base_time / r["timing"]["training_sec"] if r["timing"]["training_sec"] > 0 else 0
                 row += f" | {speedup:>19.2f}x"
